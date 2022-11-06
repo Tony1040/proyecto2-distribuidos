@@ -20,12 +20,14 @@ exports.handler = async (event, context) => {
       const request = JSON.parse(message.content.toString());
       switch (request.method) {
         case "DELETE":
-          await fetch(url + "trailer/" + request.id, {
+          console.log("Doing a delete: ", url + "trailer/" + request.id);
+          const result = await fetch(url + "trailer/" + request.id, {
             method: "DELETE",
             headers: { "Content-type": "application/json" },
           });
           break;
         case "UPDATE":
+          console.log("Doing a update: ", url + "trailer/" + request.id);
           await fetch(url + "trailer/" + request.id, {
             headers: { "Content-type": "application/json" },
             method: "PUT",
@@ -38,6 +40,8 @@ exports.handler = async (event, context) => {
             method: "POST",
             body: JSON.stringify(request.body),
           });
+          break;
+        default:
           break;
       }
       message = await channel.get("Proyecto2-trailers", { noAck: true });

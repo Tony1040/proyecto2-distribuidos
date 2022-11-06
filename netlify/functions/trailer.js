@@ -41,7 +41,7 @@ app.get("/:id", async (req, res) => {
     const trailer = await client
       .db(DB_NAME)
       .collection(TRAILERS_COLECTION)
-      .find({ _id: parseInt(req.params.id) })
+      .find({ _id: req.params.id })
       .toArray();
     res.json(trailer);
   } catch (error) {
@@ -55,7 +55,7 @@ app.post("/", async (req, res) => {
     const client = await clientPromise;
 
     let data = req.body;
-    data._id = parseInt(data._id);
+    // data._id = parseInt(data._id);
 
     await client.db(DB_NAME).collection(TRAILERS_COLECTION).insertOne(data);
 
@@ -71,8 +71,7 @@ app.put("/:id", async (req, res) => {
     const client = await clientPromise;
 
     let data = req.body;
-    const id = parseInt(data._id);
-    data._id = id;
+    const id = data._id;
 
     await client
       .db(DB_NAME)
@@ -89,7 +88,7 @@ app.put("/:id", async (req, res) => {
 app.delete("/:id", async (req, res) => {
   try {
     const client = await clientPromise;
-    const id = parseInt(req.params.id);
+    const id = req.params.id;
 
     await client
       .db(DB_NAME)

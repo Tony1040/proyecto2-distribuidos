@@ -3,17 +3,43 @@
   <div class="row">
     <div style="margin-top: 5%">
       <h2>{{ title }}</h2>
-      <div v-for="(category, key) in categories" :key="category._id">
-        <p>{{ key }}</p>
-        <ul>
-          <li>
-            {{ key }}
-            <ul v-for="trailer in category" :key="trailer._id">
-              <li>{{ trailer }}</li>
-            </ul>
-          </li>
-        </ul>
+      <div class="accordion" id="allTrailersAccordion">
+        <div
+          class="accordion-item"
+          v-for="(category, key) in categories"
+          :key="category._id"
+        >
+          <h2
+            class="accordion-header"
+            v-bind:id="'panelsStayOpen-Heading' + key"
+          >
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              v-bind:data-bs-target="'#panelsStayOpen-Collapse' + key"
+              aria-expanded="true"
+              v-bind:aria-controls="'panelsStayOpen-' + key"
+            >
+              {{ key }}
+            </button>
+          </h2>
+          <div
+            v-bind:id="'panelsStayOpen-Collapse' + key"
+            class="accordion-collapse collapse show"
+            v-bind:aria-labelledby="'panelsStayOpen-Heading' + key"
+          >
+            <div class="accordion-body">
+              <ul class="list" v-for="trailer in category" :key="trailer._id">
+                <a v-bind:href="'/trailer/show/' + trailer._id">{{
+                  trailer.name
+                }}</a>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
+      <a class="button mt-5" type="button" href="/trailer/create"> New </a>
     </div>
   </div>
 </template>
