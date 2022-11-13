@@ -4,7 +4,7 @@ const rabbitPromise = require("./rabbitMQ");
 const fetch = require("node-fetch");
 const headers = require("./headerCORS");
 
-const local = process.env.LAMBDA_TASK_ROOT || "";
+const local =  "";
 
 let url = "https://pendetrailers.netlify.app/.netlify/functions/";
 if (local == "") {

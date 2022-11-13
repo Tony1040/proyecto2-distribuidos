@@ -119,7 +119,9 @@ app.post("/", async (req, res) => {
     const bucket = new mongodb.GridFSBucket(db);
     const videoUploadStream = bucket.openUploadStream(data._id);
 
-    got.stream(videoFileUrl).pipe(videoUploadStream);
+    const stream_result = await got.stream(videoFileUrl);
+    console.log("This is the result: ", stream_result);
+    stream_result.pipe(videoUploadStream);
     // try {
     //   const response = await axios({
     //     method: "GET",
@@ -157,7 +159,9 @@ app.put("/:id", async (req, res) => {
     const bucket = new mongodb.GridFSBucket(db);
     const videoUploadStream = bucket.openUploadStream(data._id);
 
-    got.stream(videoFileUrl).pipe(videoUploadStream);
+    const stream_result = await got.stream(videoFileUrl);
+    console.log("This is the result: ", stream_result);
+    stream_result.pipe(videoUploadStream);
 
     res.json({ statusCode: 200, headers, body: "OK" });
   } catch (error) {
