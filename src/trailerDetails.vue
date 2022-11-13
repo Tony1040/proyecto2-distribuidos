@@ -36,21 +36,21 @@
         <div class="row">
           <div class="four columns">
             <label for="phoneInput">Country</label>
-            <input class="u-full-width" type="tel" v-model="trailer.country" />
+            <input class="u-full-width" type="text" v-model="trailer.country" />
           </div>
           <div class="four columns">
             <label for="phoneInput">Category</label>
-            <input class="u-full-width" type="tel" v-model="trailer.category" />
+            <input class="u-full-width" type="text" v-model="trailer.category" />
           </div>
           <div class="four columns">
             <label for="phoneInput">Languaje</label>
-            <input class="u-full-width" type="tel" v-model="trailer.languaje" />
+            <input class="u-full-width" type="text" v-model="trailer.languaje" />
           </div>
         </div>
         <div class="row">
           <div class="twelve columns">
             <label for="phoneInput">URL</label>
-            <input class="u-full-width" type="tel" v-model="trailer.url" />
+            <input class="u-full-width" type="text" v-model="trailer.url" />
           </div>
         </div>
         <div class="row">
@@ -76,7 +76,7 @@
           <br />
           <br />
           <div class="twelve columns">
-            <router-link class="button button-primary" to="/trailer">
+            <router-link class="button button-primary" to="/">
               Back
             </router-link>
             <a
