@@ -9,6 +9,7 @@ const DB_NAME = "JazzLegendsApp";
 const TRAILERS_COLECTION = "movieTrailers";
 const fs = require("fs");
 const stream = require("stream");
+const axios = require("axios");
 const got = require("got");
 const mongodb = require("mongodb");
 
@@ -119,6 +120,17 @@ app.post("/", async (req, res) => {
     const videoUploadStream = bucket.openUploadStream(data._id);
 
     got.stream(videoFileUrl).pipe(videoUploadStream);
+    // try {
+    //   const response = await axios({
+    //     method: "GET",
+    //     url: url,
+    //     responseType: "stream",
+    //   });
+    //   response.data.pipe(videoUploadStream)
+    // } catch (err) {
+    //   console.log("Something went wrong!");
+    //   console.log(err);
+    // }
 
     res.json({ statusCode: 200, headers, body: "OK" });
   } catch (error) {

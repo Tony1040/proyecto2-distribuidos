@@ -4,8 +4,13 @@ const rabbitPromise = require("./rabbitMQ");
 const fetch = require("node-fetch");
 const headers = require("./headerCORS");
 
-let url = "https://pendetrailers.netlify.app/.netlify/functions/";
+const local = process.env.LAMBDA_TASK_ROOT || "";
 
+let url = "https://pendetrailers.netlify.app/.netlify/functions/";
+if (local == "") {
+  console.log("Running locally");
+  url = "http://localhost:8888/.netlify/functions/";
+}
 exports.handler = async (event, context) => {
   if (event.httpMethod == "OPTIONS") {
     return { statusCode: 200, headers, body: "OK" };

@@ -161,7 +161,7 @@ export default {
           console.log(data);
           alert(JSON.stringify(data));
         } else {
-          alert("trailer update have been queued");
+          alert("La peticion para actualizar los detalles del trailer ha sido agregada a la cola");
           this.$router.push("/");
         }
       });
@@ -174,10 +174,10 @@ export default {
       }).then((data) => {
         if (data.status == 303) {
           alert(
-            "There is already an object with this id, please use a different one"
+            "Ya existe un objeto con este ID, por favor use uno diferente"
           );
         } else {
-          alert("trailer queued to be added");
+          alert("El trailer ha sido agregado a la cosa para ser agregado");
           this.$router.push("/");
         }
       });
@@ -188,7 +188,7 @@ export default {
         method: "POST",
       }).then((data) => {
         console.log(data);
-        alert("Trailer queued for deletion");
+        alert("El trailer ha sido agregado a la cola para ser eliminado");
         this.$router.push("/");
       });
     },
