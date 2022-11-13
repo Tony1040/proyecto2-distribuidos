@@ -35,6 +35,13 @@
                   trailer.name
                 }}</a>
               </ul>
+              <a
+                class="button mt-5"
+                type="button"
+                v-on:click="deleteCategory(key)"
+              >
+                Delete Category
+              </a>
             </div>
           </div>
         </div>
@@ -71,6 +78,22 @@ export default {
           console.log(this.categories);
           //   this.categories = result;
         });
+    },
+    deleteCategory(name) {
+      const delete_category = confirm(
+        "Are you sure you want to delete this category with all the videos in it?"
+      );
+      if (delete_category) {
+        console.log("deteing the whole section ", name);
+        fetch("/.netlify/functions/trailer/category/" + name, {
+          headers: { Accept: "application/json" },
+          method: "DELETE",
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("This is the data for this categories: ", data);
+          });
+      }
     },
   },
   mounted() {

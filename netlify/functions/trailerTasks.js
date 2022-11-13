@@ -14,10 +14,11 @@ exports.handler = async (event, context) => {
   try {
     const channel = await rabbitPromise();
     let message = await channel.get("Proyecto2-trailers", { noAck: true });
-
+    console.log("this is the message:", message);
     while (message) {
       console.log("This is the output: ", message.content.toString());
       const request = JSON.parse(message.content.toString());
+      console.log("this is the request: ", request);
       switch (request.method) {
         case "DELETE":
           console.log("Doing a delete: ", url + "trailer/" + request.id);
@@ -35,6 +36,7 @@ exports.handler = async (event, context) => {
           });
           break;
         case "INSERT":
+          console.log("message inserted: ", JSON.stringify(request.body));
           await fetch(url + "trailer", {
             headers: { "Content-type": "application/json" },
             method: "POST",

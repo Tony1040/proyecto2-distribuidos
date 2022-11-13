@@ -54,6 +54,25 @@
           </div>
         </div>
         <div class="row">
+          <div v-if="getVideo" class="twelve columns mb-4 mt-4">
+            <video
+              class="twelve columns"
+              id="videoPlayer"
+              width="720"
+              controls
+              autoplay
+            >
+              <source
+                v-bind:src="
+                  'https://mongo-video-streamer.herokuapp.com/video/' +
+                  trailer._id
+                "
+                type="video/mp4"
+              />
+            </video>
+          </div>
+        </div>
+        <div class="row">
           <br />
           <br />
           <div class="twelve columns">
@@ -97,6 +116,7 @@ export default {
   props: ["create", "edit", "show"],
   data: function () {
     return {
+      getVideo: false,
       title: "Información de un trailer",
       trailer: {
         _id: 0,
@@ -128,6 +148,7 @@ export default {
         .then((result) => {
           console.log(result, id);
           this.trailer = result[0];
+          this.getVideo = true;
         });
     },
     updateTrailer: function () {
@@ -168,6 +189,7 @@ export default {
       }).then((data) => {
         console.log(data);
         alert("Trailer queued for deletion");
+        this.$router.push("/trailer");
       });
     },
   },
