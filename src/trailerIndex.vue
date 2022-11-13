@@ -31,7 +31,7 @@
           >
             <div class="accordion-body">
               <ul class="list" v-for="trailer in category" :key="trailer._id">
-                <router-link to="'/trailer/show/' + trailer._id">{{
+                <router-link v-bind:to="'/trailer/show/' + trailer._id">{{
                   trailer.name
                 }}</router-link>
               </ul>
