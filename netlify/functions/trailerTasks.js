@@ -4,8 +4,11 @@ const rabbitPromise = require("./rabbitMQ");
 const fetch = require("node-fetch");
 const headers = require("./headerCORS");
 
-const url = "http://localhost:8888/.netlify/functions/";
-
+const local = process.env.LAMBDA_TASK_ROOT || "";
+let url = "https://pendetrailers.netlify.app/.netlify/functions/";
+if (local == "") {
+  url = "http://localhost:8888/.netlify/functions/";
+}
 exports.handler = async (event, context) => {
   if (event.httpMethod == "OPTIONS") {
     return { statusCode: 200, headers, body: "OK" };
@@ -22,7 +25,14 @@ exports.handler = async (event, context) => {
       switch (request.method) {
         case "DELETE":
           console.log("Doing a delete: ", url + "trailer/" + request.id);
-          const result = await fetch(url + "trailer/" + request.id, {
+          await fetch(url + "trailer/" + request.id, {
+            method: "DELETE",
+            headers: { "Content-type": "application/json" },
+          });
+          break;
+        case "DELETE_CATEGORY":
+          console.log("Doing a delete: ", url + "trailer/category/" + request.name);
+          await fetch(url + "trailer/category/" + request.name, {
             method: "DELETE",
             headers: { "Content-type": "application/json" },
           });

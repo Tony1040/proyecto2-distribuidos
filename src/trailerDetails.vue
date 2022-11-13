@@ -162,7 +162,7 @@ export default {
           alert(JSON.stringify(data));
         } else {
           alert("trailer update have been queued");
-          this.$router.push("/trailer");
+          this.$router.push("/");
         }
       });
     },
@@ -178,7 +178,7 @@ export default {
           );
         } else {
           alert("trailer queued to be added");
-          this.$router.push("/trailer");
+          this.$router.push("/");
         }
       });
     },
@@ -189,7 +189,7 @@ export default {
       }).then((data) => {
         console.log(data);
         alert("Trailer queued for deletion");
-        this.$router.push("/trailer");
+        this.$router.push("/");
       });
     },
   },

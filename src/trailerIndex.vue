@@ -87,7 +87,7 @@ export default {
       );
       if (delete_category) {
         console.log("deteing the whole section ", name);
-        fetch("/.netlify/functions/trailer/category/" + name, {
+        fetch("/.netlify/functions/deleteCategory/" + name, {
           headers: { Accept: "application/json" },
           method: "DELETE",
         })
