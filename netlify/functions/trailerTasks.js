@@ -4,10 +4,10 @@ const rabbitPromise = require("./rabbitMQ");
 const fetch = require("node-fetch");
 const headers = require("./headerCORS");
 
-const local = process.env.LAMBDA_TASK_ROOT || "";
+const local = __dirname;
 
 let url = "https://pendetrailers.netlify.app/.netlify/functions/";
-if (local == "") {
+if (local.includes("functions")) {
   console.log("Running locally");
   url = "http://localhost:8888/.netlify/functions/";
 }
