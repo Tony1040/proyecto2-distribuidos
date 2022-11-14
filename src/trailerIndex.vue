@@ -6,28 +6,28 @@
       <div class="accordion" id="allTrailersAccordion">
         <div
           class="accordion-item"
-          v-for="(category, key) in categories"
+          v-for="(category, key, index) in categories"
           :key="category._id"
         >
           <h2
             class="accordion-header"
-            v-bind:id="'panelsStayOpen-Heading' + key"
+            v-bind:id="'panelsStayOpen-Heading' + index"
           >
             <button
               class="accordion-button"
               type="button"
               data-bs-toggle="collapse"
-              v-bind:data-bs-target="'#panelsStayOpen-Collapse' + key"
+              v-bind:data-bs-target="'#panelsStayOpen-Collapse' + index"
               aria-expanded="true"
-              v-bind:aria-controls="'panelsStayOpen-' + key"
+              v-bind:aria-controls="'panelsStayOpen-' + index"
             >
               {{ key }}
             </button>
           </h2>
           <div
-            v-bind:id="'panelsStayOpen-Collapse' + key"
+            v-bind:id="'panelsStayOpen-Collapse' + index"
             class="accordion-collapse collapse show"
-            v-bind:aria-labelledby="'panelsStayOpen-Heading' + key"
+            v-bind:aria-labelledby="'panelsStayOpen-Heading' + index"
           >
             <div class="accordion-body">
               <ul class="list" v-for="trailer in category" :key="trailer._id">

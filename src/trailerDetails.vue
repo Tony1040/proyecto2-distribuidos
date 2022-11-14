@@ -64,7 +64,7 @@
             >
               <source
                 v-bind:src="
-                  'https://mongo-video-streamer.herokuapp.com/video/' +
+                  'http://mongo-video-streamer.herokuapp.com/video/' +
                   trailer._id
                 "
                 type="video/mp4"
