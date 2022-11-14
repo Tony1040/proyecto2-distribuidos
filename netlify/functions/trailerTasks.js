@@ -5,10 +5,11 @@ const fetch = require("node-fetch");
 const headers = require("./headerCORS");
 
 const run_netlify = process.env.RUN_NETLIFY || false;
-let  url = "https://pendetrailers.netlify.app/.netlify/functions/";
+let url = "https://pendetrailers.netlify.app/.netlify/functions/";
 if (!run_netlify) {
   console.log("Running locally");
   url = "http://localhost:8888/.netlify/functions/";
+}
 
 exports.handler = async (event, context) => {
   if (event.httpMethod == "OPTIONS") {
@@ -32,7 +33,10 @@ exports.handler = async (event, context) => {
           });
           break;
         case "DELETE_CATEGORY":
-          console.log("Doing a delete: ", url + "trailer/category/" + request.name);
+          console.log(
+            "Doing a delete: ",
+            url + "trailer/category/" + request.name
+          );
           await fetch(url + "trailer/category/" + request.name, {
             method: "DELETE",
             headers: { "Content-type": "application/json" },
