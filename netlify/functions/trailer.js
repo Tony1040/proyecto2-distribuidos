@@ -125,7 +125,7 @@ app.post("/", async (req, res) => {
     try {
       const response = await axios({
         method: "GET",
-        url: url,
+        url: videoFileUrl,
         responseType: "stream",
       });
       console.log('This is the response: ');
@@ -168,7 +168,7 @@ app.put("/:id", async (req, res) => {
     try {
       const response = await axios({
         method: "GET",
-        url: url,
+        url: videoFileUrl,
         responseType: "stream",
       });
       console.log('This is the response: ');
