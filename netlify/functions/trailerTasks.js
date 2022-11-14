@@ -4,13 +4,12 @@ const rabbitPromise = require("./rabbitMQ");
 const fetch = require("node-fetch");
 const headers = require("./headerCORS");
 
-const local = __dirname;
-
-let url = "https://pendetrailers.netlify.app/.netlify/functions/";
-if (local.includes("functions")) {
+const run_netlify = process.env.RUN_NETLIFY || false;
+let  url = "https://pendetrailers.netlify.app/.netlify/functions/";
+if (!run_netlify) {
   console.log("Running locally");
   url = "http://localhost:8888/.netlify/functions/";
-}
+
 exports.handler = async (event, context) => {
   if (event.httpMethod == "OPTIONS") {
     return { statusCode: 200, headers, body: "OK" };
