@@ -119,20 +119,22 @@ app.post("/", async (req, res) => {
     const bucket = new mongodb.GridFSBucket(db);
     const videoUploadStream = bucket.openUploadStream(data._id);
 
-    const stream_result = await got.stream(videoFileUrl);
-    console.log("This is the result: ", stream_result);
-    stream_result.pipe(videoUploadStream);
-    // try {
-    //   const response = await axios({
-    //     method: "GET",
-    //     url: url,
-    //     responseType: "stream",
-    //   });
-    //   response.data.pipe(videoUploadStream)
-    // } catch (err) {
-    //   console.log("Something went wrong!");
-    //   console.log(err);
-    // }
+    // const stream_result = await got.stream(videoFileUrl);
+    // console.log("This is the result: ", stream_result);
+    // stream_result.pipe(videoUploadStream);
+    try {
+      const response = await axios({
+        method: "GET",
+        url: url,
+        responseType: "stream",
+      });
+      console.log('This is the response: ');
+      console.log(response);
+      response.data.pipe(videoUploadStream)
+    } catch (err) {
+      console.log("Something went wrong!");
+      console.log(err);
+    }
 
     res.json({ statusCode: 200, headers, body: "OK" });
   } catch (error) {
@@ -159,9 +161,23 @@ app.put("/:id", async (req, res) => {
     const bucket = new mongodb.GridFSBucket(db);
     const videoUploadStream = bucket.openUploadStream(data._id);
 
-    const stream_result = await got.stream(videoFileUrl);
-    console.log("This is the result: ", stream_result);
-    stream_result.pipe(videoUploadStream);
+    // const stream_result = await got.stream(videoFileUrl);
+    // console.log("This is the result: ", stream_result);
+
+    // stream_result.pipe(videoUploadStream);
+    try {
+      const response = await axios({
+        method: "GET",
+        url: url,
+        responseType: "stream",
+      });
+      console.log('This is the response: ');
+      console.log(response);
+      response.data.pipe(videoUploadStream)
+    } catch (err) {
+      console.log("Something went wrong!");
+      console.log(err);
+    }
 
     res.json({ statusCode: 200, headers, body: "OK" });
   } catch (error) {
