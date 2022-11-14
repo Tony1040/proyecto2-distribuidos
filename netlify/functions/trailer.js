@@ -123,14 +123,12 @@ app.post("/", async (req, res) => {
     // console.log("This is the result: ", stream_result);
     // stream_result.pipe(videoUploadStream);
     try {
-      const response = await axios({
-        method: "GET",
-        url: videoFileUrl,
+      const response = await axios.get(videoFileUrl, {
         responseType: "stream",
       });
-      console.log('This is the response: ');
+      console.log("This is the response: ");
       console.log(response);
-      response.data.pipe(videoUploadStream)
+      response.data.pipe(videoUploadStream);
     } catch (err) {
       console.log("Something went wrong!");
       console.log(err);
@@ -166,14 +164,12 @@ app.put("/:id", async (req, res) => {
 
     // stream_result.pipe(videoUploadStream);
     try {
-      const response = await axios({
-        method: "GET",
-        url: videoFileUrl,
+      const response = await axios.get(videoFileUrl, {
         responseType: "stream",
       });
-      console.log('This is the response: ');
+      console.log("This is the response: ");
       console.log(response);
-      response.data.pipe(videoUploadStream)
+      response.data.pipe(videoUploadStream);
     } catch (err) {
       console.log("Something went wrong!");
       console.log(err);
